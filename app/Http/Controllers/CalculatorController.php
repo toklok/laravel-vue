@@ -26,9 +26,10 @@ class CalculatorController extends Controller
     {
 
         $validatedData = $request->validate([
-            'input' => ['required', 'min:1'],
+            'input' => ['required', 'string', 'min:1'],
         ]);
 
+        // validation has passed
         $calculation = SavedCalculations::create([
             'actual_calculation' => $validatedData['input'],
             'name' => 'calc_' . uniqid(),

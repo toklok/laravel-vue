@@ -46,12 +46,21 @@
         axios
             .post('/calculation', { input: calculation })
             .then((response) => {
+                const largeMedia = window.matchMedia(
+                    '(min-width: 1024px)',
+                ).matches;
+
                 const { data } = response.data;
-                props.calculations.push(data);
+
+                if (largeMedia) {
+                    props.calculations.push(data);
+                } else {
+                    props.calculations.unshift(data);
+                }
 
                 nextTick(() => {
                     const container = prevContainerRef.value;
-                    if (container) {
+                    if (container && largeMedia) {
                         const children = container.children;
                         const lastChild = children[children.length - 1];
                         if (lastChild) {
@@ -69,6 +78,7 @@
             })
             .catch((error) => {
                 // TODO: Better UI to handle error or flashMessage
+                // Laravel will return a JSON response containing the validation errors.
                 console.error(error);
             });
     };
@@ -82,7 +92,6 @@
     <Head title="Calculator - Joseph Curtis" />
     <div>
         <div class="flex lg:h-dvh lg:p-0 p-2 h-100 items-center justify-center">
-            <!-- <h1 class="col-span-12 max-w-1xl text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl">Calculator</h1> -->
             <div class="lg:h-[600px] grid grid-cols-12 lg:gap-1.5 gap-4">
                 <div
                     ref="prevContainerRef"

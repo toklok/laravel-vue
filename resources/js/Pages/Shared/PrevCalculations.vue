@@ -44,7 +44,7 @@
     </transition-group>
     <div v-else class="col-span-4 grid gap-1.5">
         <p class="font-bold tracking-tight text-gray-900 text-center">
-            No Calculations
+            No Calculations Found
         </p>
     </div>
 </template>
