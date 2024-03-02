@@ -16,13 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('actual_calculation');
             $table->json('inputs');
-            
+
             //Metadata fields
             $table->string('category')->nullable(); // A simple category or tag for the calculation
             $table->text('description')->nullable(); // Additional notes or description about the calculation
 
             $table->timestamps();
-        });    
+        });
     }
 
     /**

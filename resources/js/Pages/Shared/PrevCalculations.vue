@@ -31,8 +31,9 @@
                     <p class="text-lg font-semibold line-clamp-3">
                         {{ calculation.actual_calculation }}
                     </p>
-                    <!-- TODO: Make this a reality -->
-                    <!-- <p class="text-sm text-gray-500 dark:text-gray-400">7 + 6</p> -->
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        {{ calculation.inputs }}
+                    </p>
                     <span
                         @click.stop="deleteCalculation(calculation.id)"
                         class="delete-button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition-colors duration-150 ease-in-out absolute bottom-4 right-4 opacity-0 hover:opacity-100 group-hover:opacity-100"

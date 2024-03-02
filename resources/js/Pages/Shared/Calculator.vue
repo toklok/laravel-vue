@@ -60,9 +60,10 @@
             try {
                 if (math.evaluate(calculatorState.input)) {
                     calculatorState.error = false;
-                    submitCalculation(
-                        math.evaluate(calculatorState.input).toString(),
-                    );
+                    submitCalculation({
+                        parsed: math.evaluate(calculatorState.input).toString(),
+                        input: calculatorState.input,
+                    });
                     return (calculatorState.input = math
                         .evaluate(calculatorState.input)
                         .toString());

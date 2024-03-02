@@ -26,14 +26,15 @@ class CalculatorController extends Controller
     {
 
         $validatedData = $request->validate([
-            'input' => ['required', 'string', 'min:1'],
+            'parsed' => ['required', 'string', 'min:1'],
+            'input' => ['sometimes', 'string'],
         ]);
 
         // validation has passed
         $calculation = SavedCalculations::create([
-            'actual_calculation' => $validatedData['input'],
-            'name' => 'calc_' . uniqid(),
-            'inputs' => json_encode([]),
+            'actual_calculation' => $validatedData['parsed'],
+            'name' => 'calc_'.uniqid(),
+            'inputs' => $validatedData['input'] ?? 'N/A',
         ]);
 
         return response()->json([

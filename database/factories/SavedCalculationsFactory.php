@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +16,15 @@ class SavedCalculationsFactory extends Factory
      */
     public function definition(): array
     {
+        $number1 = fake()->numberBetween($min = 1, $max = 100);
+        $number2 = fake()->numberBetween($min = 1, $max = 100);
+        $operators = ['+', '-', '*', '/'];
+        $operator = fake()->randomElement($operators);
+
         return [
             'name' => fake()->name(),
             'actual_calculation' => fake()->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 1000),
-            'inputs' => json_encode([]),
+            'inputs' => "{$number1} {$operator} {$number2}",
             'category' => fake()->word(),
             'description' => fake()->sentence($nbWords = 6, $variableNbWords = true),
         ];

@@ -43,8 +43,10 @@
     };
 
     const handleSubmitCalculation = (calculation) => {
+        const { parsed, input } = calculation;
+
         axios
-            .post('/calculation', { input: calculation })
+            .post('/calculation', { parsed: parsed, input: input })
             .then((response) => {
                 const largeMedia = window.matchMedia(
                     '(min-width: 1024px)',
